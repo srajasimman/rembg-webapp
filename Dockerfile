@@ -1,4 +1,4 @@
-FROM python:3.12.2-slim
+FROM python:3.12
 
 # download this https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx
 # copy model to avoid unnecessary download
@@ -14,4 +14,4 @@ COPY . .
 
 EXPOSE 5100
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "-c", "gunicorn.conf.py", "app:app"]
